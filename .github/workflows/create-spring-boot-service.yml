@@ -9,9 +9,9 @@ on:
         required: true
         description: The name of the new service
         type: string
-      service_group:
+      repository_name:
         required: true
-        description: The group of the new service (e.g. com.example)
+        description: The name of the Github repository where the service will live
         type: string
 jobs:
   scaffold-service:
@@ -26,8 +26,8 @@ jobs:
           portClientSecret: ${{ secrets.PORT_CLIENT_SECRET }}
           token: ${{ secrets.ORG_ADMIN_TOKEN }}
           portRunId: ${{ fromJson(inputs.port_context).runId }}
-          repositoryName: ${{ inputs.service_name }}
-          portUserInputs: '{"cookiecutter_name": "${{ inputs.service_name }}", "cookiecutter_group": "${{ inputs.service_group }}" }'
+          repositoryName: ${{ inputs.repository_name }}
+          portUserInputs: '{"cookiecutter_name": "${{ inputs.service_name }}", "cookiecutter_repo": "${{ inputs.repository_name }}" }'
           cookiecutterTemplate: https://github.com/JerebChase/cookiecutter-spring-boot
           blueprintIdentifier: "service"
           organizationName: ${{ env.ORG_NAME }}
