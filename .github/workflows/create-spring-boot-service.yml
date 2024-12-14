@@ -17,6 +17,10 @@ on:
         required: true
         description: The description of the service
         type: string
+      private_repo:
+        required: true
+        description: Whether or not the generated repository should be private
+        type: boolean
 jobs:
   scaffold-service:
     env:
@@ -35,3 +39,4 @@ jobs:
           cookiecutterTemplate: https://github.com/JerebChase/cookiecutter-spring-boot
           blueprintIdentifier: "service"
           organizationName: ${{ env.ORG_NAME }}
+          privateRepo: ${{ inputs.private_repo }}
