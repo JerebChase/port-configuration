@@ -27,7 +27,7 @@ jobs:
       ORG_NAME: JerebChase
     runs-on: ubuntu-latest
     steps:
-      - uses: JerebChase/cookiecutter-gha-jerebchase@v1.0.5
+      - uses: JerebChase/cookiecutter-gha-jerebchase@v1.0.6
         id: scaff
         with:
           portClientId: ${{ secrets.PORT_CLIENT_ID }}
