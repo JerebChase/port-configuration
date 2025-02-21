@@ -5,6 +5,14 @@ on:
       port_context:
         required: true
         description: Includes the action's run id
+      aws_account:
+        required: true
+        description: The AWS account number
+        type: string
+      role_arn:
+        required: true
+        description: The role ARN to for the github action to assume
+        type: string
       service_name:
         required: true
         description: The name of the new service
@@ -27,7 +35,7 @@ jobs:
       ORG_NAME: JerebChase
     runs-on: ubuntu-latest
     steps:
-      - uses: JerebChase/cookiecutter-gha-jerebchase@v1.0.6
+      - uses: JerebChase/cookiecutter-gha-jerebchase@v1.0.7
         id: scaff
         with:
           portClientId: ${{ secrets.PORT_CLIENT_ID }}
@@ -40,3 +48,5 @@ jobs:
           blueprintIdentifier: "service"
           organizationName: ${{ env.ORG_NAME }}
           privateRepo: ${{ inputs.private_repo }}
+          awsAccount: ${{ inputs.aws_account }}
+          roleArn: ${{ inputs.role_arn }}
